@@ -1,3 +1,6 @@
+![image](https://github.com/guilhermegoms/ANSIBLE/assets/84462682/4dd81d92-4e5e-4d4a-90ee-1e49f99ade22 ) 
+
+
 # AMBIENTE DE MONITORAÇÃO USANDO ANSIBLE
 
 ## SERÁO INSTALADOS
@@ -28,4 +31,16 @@ sudo ansible-playbook -i hosts main.yml
 
 
 ---
-⌨️ com ❤️ por [guilhermegoms] (https://github.com/guilhermegoms)
+
+
+<div align="center">
+  <br/>
+  <br/>
+  <br/>
+    <div>
+      <h1>Open Source</h1>
+      <sub>Copyright © 2023 - <a href="[https://github.com/guilhermegoms]">guilhermegoms</sub></a>
+    </div>
+    <br/>
+    💖
+</div>
