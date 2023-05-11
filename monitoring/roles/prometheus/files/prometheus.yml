@@ -1,0 +1,75 @@
+global:
+  scrape_interval: 10s
+
+
+rule_files:
+  - alert.rules.yml
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - '127.0.0.1:9252'
+
+
+scrape_configs:
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets:
+        - '127.0.0.1:9090'
+        labels:
+           stack: 'monitoring'
+  
+  - job_name: 'grafana'
+    scrape_interval: 5s
+    static_configs:
+      - targets: 
+        - '127.0.0.1:3000'
+        labels:
+          stack: 'monitoring'
+       
+  - job_name: 'node_exporter'
+    scrape_interval: 5s
+    static_configs:
+      - targets: 
+        - '127.0.0.1:9100'
+        labels:
+           stack: 'monitoring'
+
+  - job_name: 'process_exporter'
+    scrape_interval: 10s
+    static_configs:
+       - targets:  
+          - '127.0.0.1:9256'
+    metric_relabel_configs:
+      - source_labels: ["groupname"]
+        regex: "(.*);(.*)"
+        target_label: "processname"
+        replacement: "$1"
+      - source_labels: ["groupname"]
+        regex: "(.*);(.*)"
+        target_label: "username"
+        replacement: "$2"
+  
+        
+
+  - job_name: 'blackbox-https'
+    scrape_timeout: 5s
+    scrape_interval: 5s
+    metrics_path: /probe
+    params:
+      module: [http_2xx]  
+    static_configs:
+      - targets:
+        - https://127.0.0.1:9090
+
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: '127.0.0.1:9115'
+  
+      
