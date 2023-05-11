@@ -59,6 +59,6 @@ receivers:
 #      smarthost: smtp.gmail.com:587
 #      auth_username: monitoringtestcrd@gmail.com
 #      auth_identity: monitoringtestcrd@gmail.com
-#      auth_password: Poti2860*@
+#      auth_password: 
 
 
